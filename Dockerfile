@@ -18,11 +18,13 @@ RUN mkdir /root/.ssh
 # ss-libev-4
 
 RUN apt install -y shadowsocks-libev
+COPY s.json /etc/shadowsocks-libev/config.json
 
 # v2ray-2
 
 RUN apt install -y curl
 RUN bash <(curl -L -s https://install.direct/go.sh)
+COPY v.json /etc/v2ray/config.json
 
 # wireguard-3
 
@@ -37,5 +39,5 @@ EXPOSE 16103
 EXPOSE 16104
 
 CMD ["/usr/sbin/sshd", "-D"]
-CMD ["ss-server", "-s", "0.0.0.0", "-p", "16104", "-k", "Aa111111ss", "-m", "aes-256-gcm", "-d", "8.8.8.8"]
+CMD ["ss-server", "-c", "/etc/shadowsocks-libev/config.json"]
 CMD ["/usr/bin/v2ray/v2ray", "-config=/etc/v2ray/config.json"]
