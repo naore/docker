@@ -3,7 +3,7 @@ MAINTAINER Naore "https://github.com/naore"
 
 RUN apt update
 
-# SSHD
+# SSHD-0
 
 RUN apt install -y openssh-server
 RUN mkdir /var/run/sshd
@@ -12,6 +12,7 @@ RUN echo 'root:admin' |chpasswd
 
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
 
 RUN mkdir /root/.ssh
 
@@ -33,7 +34,7 @@ COPY v.json /etc/v2ray/config.json
 RUN apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 22
+EXPOSE 16100
 EXPOSE 16102
 EXPOSE 16103
 EXPOSE 16104
