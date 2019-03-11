@@ -1,11 +1,12 @@
-FROM       ubuntu:18.04
-MAINTAINER Naore "https://github.com/naore"
+FROM ubuntu:18.04
 
-RUN apt update
+RUN uname -a
+
+RUN apt-get update
 
 # SSHD-0
 
-RUN apt install -y openssh-server
+RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 
 RUN echo 'root:admin' |chpasswd
@@ -18,12 +19,14 @@ RUN mkdir /root/.ssh
 
 # ss-libev-4
 
-RUN apt install -y shadowsocks-libev
+RUN apt-get install -y shadowsocks-libev
 COPY s.json /etc/shadowsocks-libev/config.json
 
 # v2ray-2
 
-RUN apt install -y curl
+RUN apt-get install -y curl
+RUN rm /bin/sh
+RUN ln -s /bin/bash /bin/sh
 RUN bash <(curl -L -s https://install.direct/go.sh)
 COPY v.json /etc/v2ray/config.json
 
@@ -39,6 +42,4 @@ EXPOSE 16102
 EXPOSE 16103
 EXPOSE 16104
 
-CMD ["/usr/sbin/sshd", "-D"]
-CMD ["ss-server", "-c", "/etc/shadowsocks-libev/config.json"]
-CMD ["/usr/bin/v2ray/v2ray", "-config=/etc/v2ray/config.json"]
+CMD exec bash /root/run.sh
