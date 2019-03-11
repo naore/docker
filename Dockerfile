@@ -34,6 +34,7 @@ COPY v.json /etc/v2ray/config.json
 
 # Complete
 
+COPY run.sh /root/run.sh
 RUN apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
