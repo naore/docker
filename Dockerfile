@@ -7,13 +7,14 @@ RUN apt-get update
 # SSHD-0
 
 RUN apt-get install -y openssh-server
+
 RUN mkdir /var/run/sshd
 
 RUN echo 'root:admin' |chpasswd
 
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-RUN sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
+ && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+ && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
 
 RUN mkdir /root/.ssh
 
@@ -26,7 +27,7 @@ COPY s.json /etc/shadowsocks-libev/config.json
 
 RUN apt-get install -y curl
 RUN rm /bin/sh
-RUN ln -s /bin/bash /bin/sh
+ && ln -s /bin/bash /bin/sh
 RUN bash <(curl -L -s https://install.direct/go.sh)
 COPY v.json /etc/v2ray/config.json
 
@@ -35,6 +36,8 @@ COPY v.json /etc/v2ray/config.json
 # Complete
 
 COPY run.sh /root/run.sh
+RUN chmod +x /root/run.sh
+
 RUN apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -43,4 +46,4 @@ EXPOSE 16102
 EXPOSE 16103
 EXPOSE 16104
 
-CMD exec bash /root/run.sh
+CMD ["/bin/sh", "/root/run.sh"]
