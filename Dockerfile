@@ -22,6 +22,7 @@ RUN mkdir /root/.ssh
 
 RUN apt-get install -y shadowsocks-libev
 COPY s.json /etc/shadowsocks-libev/config.json
+COPY s.pid /s.pid
 
 # v2ray-2
 
