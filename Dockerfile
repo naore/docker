@@ -32,7 +32,7 @@ RUN /tmp/go.sh
 
 RUN set -ex && \
     apt-get install -y ca-certificates && \
-    mkdir /var/log/v2ray/ &&\
+#    mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
