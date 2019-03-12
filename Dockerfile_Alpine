@@ -8,6 +8,8 @@ RUN /tmp/go.sh
 
 FROM shadowsocks/shadowsocks-libev:latest
 
+LABEL maintainer=naore
+
 RUN uname -a
 
 # ss-4
@@ -31,13 +33,14 @@ RUN set -ex && \
     
 # sshd-0
 
-RUN apk update && apk add --no-cache openssh echo sed \
-		       && mkdir -p /root/.ssh \
-               && mkdir /var/run/sshd \
-               && echo 'root:admin' |chpasswd \
-               && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-               && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-               && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
+RUN apk add --no-cache openssh \
+	&& apk add --no-cache sed \
+	&& mkdir -p /root/.ssh \
+        && mkdir /var/run/sshd \
+        && echo 'root:admin' |chpasswd \
+        && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+        && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
+        && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
 
 # Complete
 
