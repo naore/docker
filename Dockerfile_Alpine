@@ -23,14 +23,14 @@ COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 COPY v.json /etc/v2ray/config.json
 
 RUN set -ex && \
-    apk --no-cache add ca-certificates && \
+    apk update && apk --no-cache add ca-certificates && \
     mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
     
 # sshd-0
 
-RUN apk update && apk upgrade && apk add --no-cache openssh echo sed \
+RUN apk update && apk add --no-cache openssh echo sed \
 		       && mkdir -p /root/.ssh \
                && mkdir /var/run/sshd \
                && echo 'root:admin' |chpasswd \
