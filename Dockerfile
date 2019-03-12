@@ -26,9 +26,16 @@ COPY s.json /etc/shadowsocks-libev/config.json
 # v2ray-2
 
 RUN apt-get install -y curl
-RUN rm /bin/sh \
- && ln -s /bin/bash /bin/sh
-RUN bash <(curl -L -s https://install.direct/go.sh)
+RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
+RUN chmod +x /tmp/go.sh
+RUN /tmp/go.sh
+
+RUN set -ex && \
+    apk --no-cache add ca-certificates && \
+    mkdir /var/log/v2ray/ &&\
+    chmod +x /usr/bin/v2ray/v2ctl && \
+    chmod +x /usr/bin/v2ray/v2ray
+
 COPY v.json /etc/v2ray/config.json
 
 # wireguard-3
@@ -37,6 +44,9 @@ COPY v.json /etc/v2ray/config.json
 
 COPY run.sh /root/run.sh
 RUN chmod +x /root/run.sh
+
+RUN rm /bin/sh \
+ && ln -s /bin/bash /bin/sh
 
 RUN apt clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
