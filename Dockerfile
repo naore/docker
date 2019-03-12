@@ -31,7 +31,7 @@ RUN chmod +x /tmp/go.sh
 RUN /tmp/go.sh
 
 RUN set -ex && \
-    apk --no-cache add ca-certificates && \
+    apt-get install -y ca-certificates && \
     mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
