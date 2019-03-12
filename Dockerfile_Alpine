@@ -15,6 +15,7 @@ RUN uname -a
 # ss-4
 
 COPY s.json /etc/shadowsocks-libev/config.json
+COPY s.pid /s.pid
 
 # pv-2
 
