@@ -31,7 +31,7 @@ RUN set -ex && \
     
 # sshd-0
 
-RUN apk update && apk upgrade && apk add --no-cache openssh echo sed \
+RUN apk update && apk add --no-cache openssh echo sed \
 		       && mkdir -p /root/.ssh \
                && mkdir /var/run/sshd \
                && echo 'root:admin' |chpasswd \
