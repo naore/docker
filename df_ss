@@ -1,0 +1,5 @@
+FROM shadowsocks/shadowsocks-libev:latest
+
+COPY s.json /etc/shadowsocks-libev/config.json
+
+CMD ss-server -c /etc/shadowsocks-libev/config.json
