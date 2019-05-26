@@ -1,12 +1,14 @@
-FROM ubuntu:latest as builder
+FROM ubuntu:latest as pv_builder
 
-RUN apt-get update
-RUN apt-get install curl -y
-RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
-RUN chmod +x /tmp/go.sh
-RUN /tmp/go.sh
+RUN apt-get update \
+ && apt-get install curl -y \
+ && curl -L -o /tmp/go.sh https://install.direct/go.sh \
+ && chmod +x /tmp/go.sh \
+ && /tmp/go.sh
 
-FROM shadowsocks/shadowsocks-libev:latest
+FROM shadowsocks/shadowsocks-libev:latest as ss_builder
+
+FROM alpine
 
 LABEL maintainer=naore
 
@@ -14,15 +16,22 @@ RUN uname -a
 
 # ss-4
 
+COPY --from=ss_builder /usr/bin/ss-* /usr/bin/
+RUN apk add --no-cache \
+      rng-tools \
+      $(scanelf --needed --nobanner /usr/bin/ss-* \
+      | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+      | sort -u)
 COPY s.json /etc/shadowsocks-libev/config.json
 COPY s.pid /s.pid
 
 # pv-2
 
-COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
+COPY --from=pv_builder /usr/bin/v2ray/* /usr/bin/v2ray/
+#COPY --from=pv_builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
+#COPY --from=pv_builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
+#COPY --from=pv_builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
+#COPY --from=pv_builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 COPY v.json /etc/v2ray/config.json
 
 USER root
@@ -46,15 +55,10 @@ RUN apk add --no-cache openssh \
 # Complete
 
 COPY run.sh /root/run.sh
-RUN chmod +x /root/run.sh
+RUN chmod +x /root/run.sh \
+ && apk add --no-cache bash \
+ && rm -rf /var/cache/apk/* /tmp/* 
 
-RUN apk add --no-cache bash
-
-RUN rm -rf /var/cache/apk/* /tmp/* 
-
-EXPOSE 16100
-EXPOSE 16102
-EXPOSE 16103
-EXPOSE 16104
+EXPOSE 16100 16102 16103 16104
 
 CMD ["/bin/bash", "/root/run.sh"]
