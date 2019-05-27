@@ -18,7 +18,7 @@ RUN apk --no-cache upgrade && apk --no-cache add samba samba-common-tools superv
 COPY samba/*.conf /config/
 
 # create a samba user matching our user from above with a very simple password ("letsdance")
-RUN echo -e "love1314\nlove1314" | smbpasswd -a -s -c /config/smb.conf nas \
+RUN echo -e "love1314\nlove1314" | smbpasswd -a -s -c /config/smb.conf nas
 
 # volume mappings
 # VOLUME /config /work /mltmedia /doc /p2p /moments /toBsaved
