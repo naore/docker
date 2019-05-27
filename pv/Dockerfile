@@ -2,6 +2,6 @@
 
 FROM v2ray/official:latest
 
-COPY v.json /etc/v2ray/config.json
+COPY v.json /v.json
 
-CMD ["v2ray", "-config=/etc/v2ray/config.json"]
+CMD ["v2ray", "-config=/v.json"]
