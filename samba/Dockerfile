@@ -15,7 +15,7 @@ RUN apk --no-cache upgrade && apk --no-cache add samba samba-common-tools superv
  && rm -rf /var/cache/apk/* /tmp/* 
  
 # copy config files from project folder to get a default config going for samba and supervisord
-COPY *.conf /config/
+COPY samba/*.conf /config/
 
 # create a samba user matching our user from above with a very simple password ("letsdance")
 RUN echo -e "love1314\nlove1314" | smbpasswd -a -s -c /config/smb.conf nas \
