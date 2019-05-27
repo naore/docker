@@ -10,11 +10,13 @@ RUN uname -a \
  && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
     sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config \
- && mkdir /root/.ssh
+ && mkdir /root/.ssh \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # ss-libev-4
 
-RUN apt-get install -y shadowsocks-libev
+RUN apt-get install -y shadowsocks-libev \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY s.json /etc/shadowsocks-libev/config.json
 COPY s.pid /s.pid
 
@@ -26,9 +28,10 @@ RUN apt-get install -y curl \
  && /tmp/go.sh \
  && set -ex && \
     apt-get install -y ca-certificates && \
-#    mkdir /var/log/v2ray/ &&\
+    mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
-    chmod +x /usr/bin/v2ray/v2ray
+    chmod +x /usr/bin/v2ray/v2ray \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY v.json /etc/v2ray/config.json
 
