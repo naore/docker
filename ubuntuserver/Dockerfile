@@ -15,14 +15,16 @@ RUN uname -a \
 
 # ss-libev-4
 
-RUN apt-get install -y shadowsocks-libev \
+RUN apt-get update \
+ && apt-get install -y shadowsocks-libev \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY s.json /etc/shadowsocks-libev/config.json
 COPY s.pid /s.pid
 
 # v2ray-2
 
-RUN apt-get install -y curl \
+RUN  apt-get update \
+ && apt-get install -y curl \
  && curl -L -o /tmp/go.sh https://install.direct/go.sh \
  && chmod +x /tmp/go.sh \
  && /tmp/go.sh \
