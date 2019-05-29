@@ -30,7 +30,6 @@ RUN  apt-get update \
  && /tmp/go.sh \
  && set -ex && \
     apt-get install -y ca-certificates && \
-    mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
