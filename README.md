@@ -1,14 +1,18 @@
-# us
+# doker
 unite-server
 
 All files below is dockerfile.
 
-Dockerfile is for ubuntu-based server with ssh, ss and pv support.
+ubuntu is for ubuntu-based server with ssh, ss and pv support.
 
-Dockerfile_alpine is for alpine-based server with ssh, ss and pv support.
+alpine is for alpine-based server with ssh, ss and pv support.
 
-df_pv is for alpine-based server with pv support.
+pv is for alpine-based server with pv support.
 
-df_ss is for alpine-based server with ss support.
+ss is for alpine-based server with ss support.
+
+samba is for alpine-based server with samba support.
+
+btsync is for alpine-based server with btsync 1.4.111 support.
 
 # Support for wireguard should be added for local server with root permission and confirmed kernel version.
