@@ -1,3 +1,5 @@
+## forked from [FreemanZY/BTSync-DHT-Docker](https://github.com/FreemanZY/BTSync-DHT-Docker)
+
 # BTSync-DHT-Docker
 BTSync Ver.1.4.111, the last one with DHT.
 
@@ -17,9 +19,9 @@ btsync_x64-1.4.111.tar.gz
 ## Usage
 docker create \
 	--name=btsync \
-//	-v \<path to config dir\>:/config \
-	-v \<path to sync data\>:/btsync/folder \
+//	-v \<path to config dir\>:/btsync/data \
+	-v \<path to sync data\>:/mount \
 //	-e PGID=\<gid\> -e PUID=\<uid\> \
 	-p 8888:8888 \
 	-p 8889:8889 \
-	naore/BTSync-DHT-Docker
+	naore/btsync-alpine
