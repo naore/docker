@@ -17,7 +17,7 @@ RUN apk add --no-cache --update-cache --update curl ca-certificates && \
     
 COPY btsync.conf /btsync/config/btsync.conf
 
-EXPOSE 8888 8889
+EXPOSE 8888 55555
 VOLUME /mount /btsync/data
 ENTRYPOINT ["/opt/btsync/btsync"]
 CMD ["--nodaemon","--config","/btsync/config/btsync.conf"]
