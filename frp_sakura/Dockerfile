@@ -8,9 +8,7 @@ ENV ID="tunnelid"
 
 RUN wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
     tar xzf ${VERSION}.tar.gz && \
-    cd ${VERSION} && \
     mv ${VERSION} /sakura && \
-    cd .. && \
     rm -rf *.tar.gz && \
     rm -rf ${VERSION}
 
