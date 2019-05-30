@@ -6,11 +6,13 @@ ENV PASSWD="abc"
 ENV SID="serverid"
 ENV ID="tunnelid"
 
-RUN wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
+RUN apk add --no-cache ca-certificates && \
+    wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
     tar xzf ${VERSION}.tar.gz && \
     mv ${VERSION} /sakura && \
     chmod +x /sakura &&\
     rm -rf *.tar.gz && \
-    rm -rf ${VERSION}
+    rm -rf ${VERSION} && \
+    rm -rf /var/cache/apk/*
 
 ENTRYPOINT /sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause
