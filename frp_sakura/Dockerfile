@@ -12,6 +12,7 @@ RUN apk add --no-cache ca-certificates && \
     mv ${VERSION} /sakura && \
     chmod +x /sakura && \
     echo "/sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause" > /entrypoint.sh && \
+    chmod +x /entrypoint.sh
     rm -rf *.tar.gz && \
     rm -rf ${VERSION} && \
     rm -rf /var/cache/apk/*
