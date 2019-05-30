@@ -10,8 +10,8 @@ RUN apk add --no-cache ca-certificates && \
     wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
     tar xzf ${VERSION}.tar.gz && \
     mv ${VERSION} /sakura && \
-    chmod +x /sakura &&\
-    echo "/sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause" > /entrypoint.sh
+    chmod +x /sakura && \
+    echo "/sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause" > /entrypoint.sh && \
     rm -rf *.tar.gz && \
     rm -rf ${VERSION} && \
     rm -rf /var/cache/apk/*
