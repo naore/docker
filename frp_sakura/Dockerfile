@@ -12,4 +12,4 @@ RUN wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.
     rm -rf *.tar.gz && \
     rm -rf ${VERSION}
 
-ENTRYPOINT ["/sakura","--su=${USERANME}","--sp=${PASSWD}","--sid=${SID}","--sc=${ID}","--disable-pause"]
+ENTRYPOINT ["/sakura","--su=${USERNAME}","--sp=${PASSWD}","--sid=${SID}","--sc=${ID}","--disable-pause"]
