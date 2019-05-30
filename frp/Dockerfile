@@ -15,7 +15,7 @@ RUN wget --no-check-certificate https://github.com/fatedier/frp/releases/downloa
     rm -rf frp_${FRP_VERSION}_linux_amd64
 
 WORKDIR /
-EXPOSE 80 443 6000 7000 7500
+# EXPOSE 80 443 6000 7000 7500
 VOLUME /conf
 
 ENTRYPOINT ["/frpc","-c","/conf/frpc.ini"]
