@@ -15,4 +15,4 @@ RUN apk add --no-cache ca-certificates && \
     rm -rf ${VERSION} && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT /sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause
+ENTRYPOINT /sakura --su=$USERNAME --sp=$PASSWD --sid=$SID --sc=$ID --disable-pause
