@@ -18,4 +18,4 @@ RUN apk add --no-cache --update bash ca-certificates && \
     rm -rf ${VERSION} && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["/bin/bash","/entrypoint.sh"]
+CMD exec /entrypoint.sh
