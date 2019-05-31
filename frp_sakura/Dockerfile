@@ -1,10 +1,10 @@
 FROM alpine
 
 ENV VERSION="Sakura_frpc_linux_amd64"
-ENV USERNAME="abc"
-ENV PASSWD="abc"
-ENV SID="serverid"
-ENV ID="tunnelid"
+ENV USERNAME abc
+ENV PASSWD abc
+ENV SID serverid
+ENV ID tunnelid
 
 RUN apk add --no-cache ca-certificates && \
     wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
