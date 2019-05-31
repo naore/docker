@@ -48,7 +48,10 @@ RUN apk add --no-cache --update openssh sed \
         && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
 	&& sed -i "s/#PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config \
 #        && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-        && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
+        && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config \
+	&& ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key \
+	&& ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key \
+	&& ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key 
 
 # Complete
 
