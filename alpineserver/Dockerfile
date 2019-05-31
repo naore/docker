@@ -17,8 +17,7 @@ RUN uname -a
 # ss-4
 
 COPY --from=ss_builder /usr/bin/ss-* /usr/bin/
-RUN apk add --no-cache \
-      rng-tools \
+RUN apk add --no-cache rng-tools \
       $(scanelf --needed --nobanner /usr/bin/ss-* \
       | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
       | sort -u)
@@ -34,17 +33,14 @@ COPY --from=pv_builder /usr/bin/v2ray/* /usr/bin/v2ray/
 #COPY --from=pv_builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 COPY v.json /etc/v2ray/config.json
 
-USER root
-RUN set -ex && \
-    apk update && apk --no-cache add ca-certificates && \
+RUN apk --no-cache add ca-certificates && \
     mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
     
 # sshd-0
 
-RUN apk add --no-cache openssh \
-	&& apk add --no-cache sed \
+RUN apk add --no-cache --update openssh sed \
 	&& mkdir -p /root/.ssh \
         && mkdir /var/run/sshd \
         && echo 'root:admin' |chpasswd \
@@ -56,9 +52,8 @@ RUN apk add --no-cache openssh \
 
 COPY run.sh /root/run.sh
 RUN chmod +x /root/run.sh \
- && apk add --no-cache bash \
  && rm -rf /var/cache/apk/* /tmp/* 
 
 EXPOSE 16100 16102 16103 16104
-
-CMD ["/bin/bash", "/root/run.sh"]
+VOLUME /etc/ssh
+CMD exec /root/run.sh
