@@ -6,7 +6,7 @@ ENV PASSWD abc
 ENV SID serverid
 ENV ID tunnelid
 
-RUN apk add --no-cache ca-certificates && \
+RUN apk add --no-cache --update bash ca-certificates && \
     wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
     tar xzf ${VERSION}.tar.gz && \
     mv ${VERSION} /sakura && \
