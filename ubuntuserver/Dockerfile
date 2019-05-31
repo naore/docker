@@ -49,4 +49,4 @@ RUN chmod +x /root/run.sh \
 
 EXPOSE 16100 16102 16103 16104
 
-CMD ["/bin/sh", "/root/run.sh"]
+CMD exec /root/run.sh
