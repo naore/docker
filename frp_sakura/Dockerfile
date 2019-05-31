@@ -1,9 +1,9 @@
 FROM alpine
 
-ENV VERSION="Sakura_frpc_linux_amd64"
-ENV USERNAME abc
-ENV PASSWD abc
-ENV SID serverid
+ENV VERSION="Sakura_frpc_linux_amd64" \
+    USERNAME abc \
+    PASSWD abc \
+    SID serverid
 # ENV ID tunnelid
 
 RUN apk upgrade && apk add --no-cache ca-certificates && \
