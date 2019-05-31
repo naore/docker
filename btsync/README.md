@@ -20,8 +20,8 @@ btsync_x64-1.4.111.tar.gz
 docker create \
 	--name=btsync \
 	--restart=always \
-//	-v \<path to app data\>:/btsync/data \
-	-v \<path to sync data\>:/mount \
+	-v /app/data/:/btsync/data \
+	-v /sync/data/:/mount \
 //	-e PGID=\<gid\> -e PUID=\<uid\> \
 	-p 8888:8888 \
 	-p 55555:55555 \
