@@ -23,5 +23,5 @@ docker create \
 	-v \<path to sync data\>:/mount \
 //	-e PGID=\<gid\> -e PUID=\<uid\> \
 	-p 8888:8888 \
-	-p 8889:8889 \
+	-p 55555:55555 \
 	naore/btsync-alpine
