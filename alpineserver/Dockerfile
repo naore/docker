@@ -41,18 +41,19 @@ RUN apk --no-cache add ca-certificates && \
 # sshd-0
 
 RUN apk add --no-cache --update openssh sed \
+        && rm -rf /var/cache/apk/* /tmp/*  \
 	&& mkdir -p /root/.ssh \
         && mkdir /var/run/sshd \
         && echo 'root:admin' |chpasswd \
         && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-        && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
+	&& sed -i "s/#PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config \
+#        && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
         && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config
 
 # Complete
 
 COPY run.sh /root/run.sh
-RUN chmod +x /root/run.sh \
- && rm -rf /var/cache/apk/* /tmp/* 
+RUN chmod +x /root/run.sh 
 
 EXPOSE 16100 16102 16103 16104
 VOLUME /etc/ssh
