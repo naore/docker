@@ -11,7 +11,7 @@ RUN apk add --no-cache --update bash ca-certificates && \
     tar xzf ${VERSION}.tar.gz && \
     mv ${VERSION} /sakura && \
     chmod +x /sakura && \
-    echo "#!/bin/bash \n /sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause" > /entrypoint.sh && \
+    echo "/sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --sc=${ID} --disable-pause" > /entrypoint.sh && \
     cat /entrypoint.sh && \
     chmod +x /entrypoint.sh && \
     rm -rf *.tar.gz && \
