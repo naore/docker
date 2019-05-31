@@ -56,5 +56,5 @@ COPY run.sh /root/run.sh
 RUN chmod +x /root/run.sh 
 
 EXPOSE 16100 16102 16103 16104
-VOLUME /etc/ssh
+
 CMD exec /root/run.sh
