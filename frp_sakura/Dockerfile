@@ -7,7 +7,8 @@ ENV SID serverid
 # ENV ID tunnelid
 # apk add --no-cache --update bash ca-certificates && \
 
-RUN wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
+RUN apk upgrade && apk add --no-cache ca-certificates && \
+    wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.gz  && \ 
     tar xzf ${VERSION}.tar.gz && \
     mv ${VERSION} /sakura && \
     chmod +x /sakura && \
@@ -18,4 +19,4 @@ RUN wget --no-check-certificate https://cdn.tcotp.cn:4443/client/${VERSION}.tar.
     rm -rf ${VERSION} && \
     rm -rf /var/cache/apk/*
 
-CMD exec /sakura --su=${USERNAME} --sp=${PASSWD} --sid=${SID} --disable-pause
+CMD exec /sakura --su=$USERNAME --sp=$PASSWD --sid=$SID --disable-pause
