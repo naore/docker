@@ -39,13 +39,14 @@ COPY v.json /etc/v2ray/config.json
 
 # Complete
 
-COPY run.sh /root/run.sh
-RUN chmod +x /root/run.sh \
- && rm -rf /bin/sh \
+#COPY run.sh /root/run.sh
+RUN rm -rf /bin/sh \
  && ln -s /bin/bash /bin/sh \
  && apt clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+ # &&    chmod +x /root/run.sh
+
 
 EXPOSE 16100 16102 16103 16104
 
-CMD exec /root/run.sh
+CMD exec "/usr/sbin/sshd -D && /usr/bin/ss-server -c /etc/shadowsocks-libev/config.json -f /s.pid && /usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json "
