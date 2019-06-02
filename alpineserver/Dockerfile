@@ -62,4 +62,4 @@ COPY supervisord.conf /etc/supervisord.conf
 
 EXPOSE 16100 16102 16103 16104
 
-ENTRYPOINT ["supervisord", "-c", "/config/supervisord.conf"]
+ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
