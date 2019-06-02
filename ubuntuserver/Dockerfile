@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 
 RUN uname -a \
  && apt-get update \
- && apt-get install -y openssh-server \
+ && apt-get install -y openssh-server supervisor\
  && mkdir /var/run/sshd \
  && echo 'root:admin' |chpasswd \
  && sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
@@ -31,7 +31,8 @@ RUN apt-get update \
  && apt-get install -y ca-certificates && \
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && apt clean
 
 COPY v.json /etc/v2ray/config.json
 
@@ -39,14 +40,8 @@ COPY v.json /etc/v2ray/config.json
 
 # Complete
 
-#COPY run.sh /root/run.sh
-RUN rm -rf /bin/sh \
- && ln -s /bin/bash /bin/sh \
- && apt clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
- # &&    chmod +x /root/run.sh
-
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 16100 16102 16103 16104
 
-CMD exec "/usr/sbin/sshd -D && /usr/bin/ss-server -c /etc/shadowsocks-libev/config.json -f /s.pid && /usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json "
+CMD ["/usr/bin/supervisord"]
