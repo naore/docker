@@ -55,9 +55,9 @@ RUN apk add --no-cache --update openssh sed \
 
 # Complete
 
-COPY run.sh /root/run.sh
-RUN chmod +x /root/run.sh 
+#COPY run.sh /root/run.sh
+#RUN chmod +x /root/run.sh 
 
 EXPOSE 16100 16102 16103 16104
 
-CMD exec /root/run.sh
+CMD exec "/usr/sbin/sshd -D && /usr/bin/ss-server -c /etc/shadowsocks-libev/config.json -f /s.pid && /usr/bin/v2ray/v2ray -config=/etc/v2ray/config.json"
