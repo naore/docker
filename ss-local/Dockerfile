@@ -17,4 +17,4 @@ RUN apk add --no-cache rng-tools \
 EXPOSE 1080
 VOLUME /conf
 
-CMD ss-local -c /conf/s.json -f /s.pid --reuse-port
+CMD /usr/bin/ss-local -c /conf/s.json -f /s.pid --reuse-port
