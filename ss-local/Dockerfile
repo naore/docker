@@ -1,10 +1,5 @@
 FROM shadowsocks/shadowsocks-libev:latest
-USER root
-RUN touch /s.pid \
-    && mkdir /conf \
-    && touch /conf/s.json 
-USER nobody
-EXPOSE 1080
-VOLUME /conf
 
-CMD ss-local -c /conf/s.json -f /s.pid -u --reuse-port
+EXPOSE 1080 1080/udp
+
+CMD ss-local -s $SERVER_HOST -p $SERVER_PORT -b $LOCAL_IP -l 1080 -k $PASSWD -m $METHOD -u --reuse-port
