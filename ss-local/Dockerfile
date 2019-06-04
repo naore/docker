@@ -11,8 +11,8 @@ RUN apk add --no-cache rng-tools \
       | sort -u) \
     && touch /s.pid \
     && mkdir /conf \
+    && touch /conf/s.json \
     && rm -rf /var/cache/apk/* /tmp/*
-COPY s.json /conf/s.json
 
 EXPOSE 1080
 
