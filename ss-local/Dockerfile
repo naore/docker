@@ -14,4 +14,4 @@ RUN apk add --no-cache rng-tools \
     && rm -rf /var/cache/apk/* /tmp/*
 COPY s.json /conf/s.json
 
-CMD ss-local -c /conf/s.json -f /s.pid
+CMD ss-local -c /conf/s.json -f /s.pid --reuse-port
