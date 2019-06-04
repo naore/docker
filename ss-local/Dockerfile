@@ -7,4 +7,4 @@ RUN touch /s.pid \
 EXPOSE 1080
 VOLUME /conf
 
-CMD ss-local -c /conf/s.json -f /s.pid --reuse-port
+CMD ss-local -c /conf/s.json -f /s.pid -u --reuse-port
