@@ -10,7 +10,7 @@ RUN apk add --no-cache rng-tools \
       | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
       | sort -u) \
     && touch /s.pid \
-    && mkdir /conf
+    && mkdir /conf \
     && rm -rf /var/cache/apk/* /tmp/*
 COPY s.json /conf/s.json
 
