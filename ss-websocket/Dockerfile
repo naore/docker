@@ -4,7 +4,7 @@ LABEL maintainer=naore
 
 ENV APP=app METHOD=aes-256-cfb KEY=key
 
-RUN apk --no-cache add git bash tzdata && \
+RUN apk --no-cache add git bash tzdata python && \
     cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     git clone https://github.com/VincentChanX/shadowsocks-over-websocket.git /ss-ws && \
     cd /ss-ws && \
