@@ -21,6 +21,8 @@ COPY btsync.conf /btsync/config/btsync.conf
 COPY supervisord.conf /etc/supervisord.conf
 COPY chfs /opt/chfs/chfs
 
+RUN chmod +x /opt/chfs/chfs
+
 EXPOSE 80 8888 55555
 VOLUME /mount /btsync/data
 ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
