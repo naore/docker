@@ -12,6 +12,7 @@ RUN apk add --no-cache --update curl ca-certificates supervisor unzip && \
     curl -o /tmp/chfs.zip -L "http://iscute.cn/tar/chfs/1.8/chfs-linux-amd64-1.8.zip" && \
     mkdir -p /opt/chfs && \
     unzip /tmp/chfs.zip -d /opt/chfs && \
+    chmod +x /opt/chfs/chfs
     apk del curl ca-certificates unzip && \
     mkdir -p /btsync/data && \
     mkdir -p /btsync/config && \
