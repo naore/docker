@@ -1,6 +1,7 @@
-## 仅适用Linux x64系统
+## 仅适用Linux x86_64或arm架构系统
 
 ## 容器内部运行参数，大写字母为环境变量
-sakura --su=USERNAME --sp=PASSWD --sid=SID --disable-pause
+/sakura --su=$USERNAME --sp=$PASSWD --sid=$SID --disable-pause
 
-For stable version, run "docker run --restart always -p 22222:22 -e ROOT_PASSWORD:22222", then connect in docker and run /root/sakura.
+要指定转发端口，在SID后加"/端口"即可，如
+--sid=10/123,234
