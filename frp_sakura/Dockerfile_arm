@@ -1,9 +1,9 @@
 FROM alpine
 
 ENV VERSION="Sakura_frpc_linux_arm" \
-    USERNAME abc \
-    PASSWD abc \
-    SID serverid
+    USERNAME="abc" \
+    PASSWD="abc" \
+    SID="serverid"
 # ENV ID tunnelid
 
 RUN apk add --no-cache ca-certificates && \
