@@ -6,7 +6,7 @@
   },
   "inbounds": [
     {
-      "port": 1090, // 监听端口
+      "port": 1080, // 监听端口
       "protocol": "socks", // 入口协议为 SOCKS 5
       "sniffing": {
         "enabled": true,
@@ -18,14 +18,15 @@
       }
     },
 	{
-      "port": 1091, // 监听端口
+      "port": 1081, // 监听端口
       "protocol": "http", 
       "sniffing": {
         "enabled": true,
         "destOverride": ["http", "tls"]
       },
       "settings": {
-        "auth": "noauth"
+        "auth": "noauth",
+	"udp": true
       }
     }	  
   ],
@@ -35,7 +36,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "x.x.x.x", // 服务器地址，请修改为你自己的服务器 IP 或域名
+            "address": "s26.natfrp.org", // 服务器地址，请修改为你自己的服务器 IP 或域名
             "port": 16102,  // 服务器端口
             "users": [
               {
@@ -45,6 +46,13 @@
             ]
           }
         ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "path": "/pv_ws" //同样分流路径也要一致
+        }
       }
     },
     {
