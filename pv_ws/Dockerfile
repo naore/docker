@@ -12,13 +12,11 @@ COPY supervisord.conf /etc/supervisord.conf
 
 RUN set -ex && \
     apk --no-cache --update add ca-certificates supervisor && \
-    mkdir /var/log/v2ray/ &&\
+    mkdir /var/log/v2ray/ && \
+    mkdir /var/log/supervisor &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray && \
-    rm -rf /var/cache/apk/* /tmp/* && \
-    mkdir /var/log/supervisor
-
-ENV PATH /usr/bin/v2ray:$PATH
+    rm -rf /var/cache/apk/* /tmp/*
 
 EXPOSE 443
 
