@@ -14,25 +14,18 @@
     "streamSettings": {
       "network": "ws",
       "wsSettings": {
-      "path": "/pv_ws" //此为分流路径，可自定义
+        "path": "/pv_ws" //此为分流路径，可自定义
       }
     }
   }],
   "outbounds": [{
     "protocol": "freedom",
     "settings": {}
-  },{
+    },
+    {
     "protocol": "blackhole",
     "settings": {},
     "tag": "blocked"
-  }],
-  "routing": {
-    "rules": [
-      {
-        "type": "field",
-        "ip": ["geoip:private"],
-        "outboundTag": "blocked"
-      }
-    ]
-  }
+    }
+  ]
 }
