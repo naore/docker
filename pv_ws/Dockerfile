@@ -1,7 +1,25 @@
 # Dockerfile for pv
 
-FROM v2ray/official:latest
+FROM v2ray/official:latest as builder
 
+FROM nginx:alpine
+
+COPY --from=builder /usr/bin/v2ray/* /usr/bin/v2ray/
 COPY vs.json /v.json
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/pki/ /etc/nginx/pki/
+COPY supervisord.conf /etc/supervisord.conf
 
-CMD ["v2ray", "-config=/v.json"]
+RUN set -ex && \
+    apk --no-cache --update add ca-certificates supervisor && \
+    mkdir /var/log/v2ray/ &&\
+    chmod +x /usr/bin/v2ray/v2ctl && \
+    chmod +x /usr/bin/v2ray/v2ray && \
+    rm -rf /var/cache/apk/* /tmp/* && \
+    mkdir /var/log/supervisor
+
+ENV PATH /usr/bin/v2ray:$PATH
+
+EXPOSE 443
+
+ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
