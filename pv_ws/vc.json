@@ -14,7 +14,7 @@
       },
       "settings": {
         "auth": "noauth",  //socks的认证设置，noauth 代表不认证，由于 socks 通常在客户端使用，所以这里不认证
-		"udp": true
+	"udp": true
       }
     },
 	{
