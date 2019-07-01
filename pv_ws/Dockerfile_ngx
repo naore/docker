@@ -1,0 +1,14 @@
+FROM nginx:alpine
+
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/pki/ /etc/nginx/pki/
+COPY supervisord.conf /etc/supervisord.conf
+
+RUN set -ex && \
+    apk --no-cache --update add supervisor && \
+    mkdir /var/log/supervisor &&\
+    rm -rf /var/cache/apk/* /tmp/*
+
+EXPOSE 443
+
+ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
