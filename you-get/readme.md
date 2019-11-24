@@ -20,9 +20,11 @@ It is suggested to configure an alias as follows (and place into your .bash_alia
 ```
 alias you-get='docker run \
                   --rm -i \
-                  -e PGID=$(id -g) \
-                  -e PUID=$(id -u) \
+                  -u $(id -u):$(id -g) \
+                  #-e PGID=$(id -g) \
+                  #-e PUID=$(id -u) \
                   -v $(pwd):/downloads:rw \
+                  -w /downloads \
                   naore/you-get'
 ```
 
