@@ -9,10 +9,10 @@ FROM python:3-alpine
 #     ondrejmo/you-get "$@"
 # }
 
-RUN apk add --no-cache ffmpeg \
-    pip3 install you-get \
-    mkdir -p /downloads \
-    rm -rf /tmp/*
+RUN apk add --no-cache ffmpeg && \
+    pip3 install you-get && \
+    mkdir -p /downloads && \
+    rm -rf /tmp/* /var/cache/apk/* 
     
 WORKDIR /downloads
 VOLUME /downloads
