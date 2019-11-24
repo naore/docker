@@ -1,3 +1,5 @@
+FROM ondrejmo/you-get:latest as folked
+
 FROM python:3-alpine
 
 ## https://github.com/soimort/you-get
