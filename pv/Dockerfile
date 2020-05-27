@@ -1,6 +1,6 @@
 # Dockerfile for pv
 
-FROM v2ray/official:latest
+FROM v2fly/v2fly-core:latest
 
 COPY v.json /v.json
 
