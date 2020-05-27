@@ -1,5 +1,7 @@
 ## forked from [pwntr/samba-alpine-docker](https://github.com/pwntr/samba-alpine-docker)
+If using an external disk for sharing, it's better to mount the higher level path of the mountpoint for the container. So the samba service won't prevent the disk from sleeping.
 
+For example, the physical folder is mounted as /mnt/sda, it's better to use /mnt as shared folder.
 
 # samba-alpine
 A simple and super lightweight Samba docker container, based on the latest Alpine Linux base image 🐧🐋💻.
@@ -31,4 +33,3 @@ To have the container start when the host boots, add docker's restart policy:
 docker run -d --restart=always -p 135:135/tcp -p 137:137/udp -p 138:138/udp -p 139:139/tcp -p 445:445/tcp -v /path/to/share/:/shared --name samba pwntr/samba-alpine
 ```
 
-# VOLUME /config /work /mltmedia /doc /p2p /moments /toBsaved
