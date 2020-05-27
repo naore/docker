@@ -22,7 +22,7 @@ COPY *.conf /config/
 RUN echo -e "love1314\nlove1314" | smbpasswd -a -s -c /config/smb.conf nas
 
 # volume mappings
-VOLUME /config \
+VOLUME /config 
 # VOLUME /work /mltmedia /doc /p2p /moments /toBsaved
 
 # exposes samba's default ports (135 for End Point Mapper [DCE/RPC Locator Service],
