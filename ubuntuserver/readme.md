@@ -1,4 +1,4 @@
-alpine server with ssh, project v, and $$
+ubuntu server with ssh, project v, and $$
 
 mount {your/pv/config}:/v.json
 
