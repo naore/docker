@@ -25,13 +25,18 @@ RUN uname -a \
  && curl -L -o /tmp/go.sh https://install.direct/go.sh \
  && chmod +x /tmp/go.sh \
  && /tmp/go.sh \
- && apt-get install -y ca-certificates && \
-    chmod +x /usr/bin/v2ray/v2ctl && \
-    chmod +x /usr/bin/v2ray/v2ray \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
- && apt clean
+ && apt-get install -y ca-certificates \
+ && chmod +x /usr/bin/v2ray/v2ctl \
+ && chmod +x /usr/bin/v2ray/v2ray \
 # ss-libev-4
-COPY --
+  && apt update && apt install -y wget \
+  && mkdir ./build-area \
+  && cd build-area \
+  && wget https://github.com/shadowsocks/shadowsocks-libev/raw/master/scripts/build_deb.sh \
+  && chmod +x build_deb.sh \
+  && ./build_deb.sh all \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && apt clean
 
 COPY s.json /etc/shadowsocks-libev/config.json
 COPY s.pid /s.pid
