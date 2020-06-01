@@ -1,12 +1,3 @@
-FROM ubuntu:20.04 as builder
-
-RUN apt update && apt install -y wget \
-  && mkdir ./build-area \
-  && cd build-area \
-  && wget https://github.com/shadowsocks/shadowsocks-libev/raw/master/scripts/build_deb.sh \
-  && chmod +x build_deb.sh \
-  && ./build_deb.sh all
-
 FROM ubuntu:20.04
 
 # SSHD-0
@@ -19,7 +10,6 @@ RUN uname -a \
 # && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
  && sed -ri 's/^#?Port .*/Port 16100/' /etc/ssh/sshd_config \
  && mkdir /root/.ssh \
-# && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # v2ray-2
  && apt-get install -y curl \
  && curl -L -o /tmp/go.sh https://install.direct/go.sh \
@@ -29,10 +19,10 @@ RUN uname -a \
  && chmod +x /usr/bin/v2ray/v2ctl \
  && chmod +x /usr/bin/v2ray/v2ray \
 # ss-libev-4
-  && apt update && apt install -y wget \
-  && mkdir ./build-area \
-  && cd build-area \
-  && wget https://github.com/shadowsocks/shadowsocks-libev/raw/master/scripts/build_deb.sh \
+  && mkdir /tmp/ss \
+  && cd /tmp/ss \
+  && curl -L -o /tmp/ss/build_deb.sh https://github.com/shadowsocks/shadowsocks-libev/raw/master/scripts/build_deb.sh \
+  && sed -ri 's/sudo / /' build_deb.sh \
   && chmod +x build_deb.sh \
   && ./build_deb.sh all \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -45,7 +35,6 @@ COPY v.json /etc/v2ray/config.json
 # wireguard-3 to be added
 
 # Complete
-
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 16100 16102 16103 16104
