@@ -3,7 +3,7 @@ FROM python:rc-alpine
 ADD init /init
 
 RUN apk add --no-cache --virtual ffmpeg ca-certificates && \
-    pip3 install youtube-dl
+    pip3 install youtube-dl && \
     mkdir -p /workdir && \
     chmod +x /init
 
