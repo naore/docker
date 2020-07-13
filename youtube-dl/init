@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Set UID/PID of user that youtube-dl will be run as
 YOUTUBEDLPGID=${PGID:-1000}
