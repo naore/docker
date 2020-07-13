@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Set UID/PID of user that youtube-dl will be run as
+YOUTUBEDLPGID=${PGID:-1000}
+YOUTUBEDLPUID=${PUID:-1000}
+
+# Create dockeruser user/group
+addgroup --quiet --gid $YOUTUBEDLPGID dockeruser
+mkdir -p /home/dockeruser
+chown $YOUTUBEDLPUID:$YOUTUBEDLPGID /home/dockeruser
+adduser --quiet --system --disabled-password --uid $YOUTUBEDLPUID --gid $YOUTUBEDLPGID --home /home/dockeruser dockeruser
+chown $YOUTUBEDLPUID:$YOUTUBEDLPGID /usr/local/bin/youtube-dl
+chmod u+s /usr/local/bin/youtube-dl
+export HOME=/home/dockeruser
+apk add youtube-dl
+
+# Run youtube-dl with remainder of command line arguments
+setpriv --reuid dockeruser --regid dockeruser --keep-groups /usr/local/bin/youtube-dl "$@"
