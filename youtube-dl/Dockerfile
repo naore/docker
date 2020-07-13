@@ -2,8 +2,8 @@ FROM python:rc-alpine
 
 ADD init /init
 
-RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
-    apk add --no-cache --virtual youtube-dl ffmpeg ca-certificates && \
+RUN apk add --no-cache --virtual ffmpeg ca-certificates && \
+    pip3 install youtube-dl
     mkdir -p /workdir && \
     chmod +x /init
 
