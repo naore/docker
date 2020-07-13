@@ -1,6 +1,6 @@
 FROM ondrejmo/you-get:latest as folked
 
-FROM python:3-alpine
+FROM python:rc-alpine
 
 ## https://github.com/soimort/you-get
 # you-get(){
@@ -16,8 +16,9 @@ RUN apk add --no-cache ffmpeg && \
     mkdir -p /downloads && \
     rm -rf /tmp/* /var/cache/apk/* 
     
+ADD init /init
 WORKDIR /downloads
 VOLUME /downloads
 
-ENTRYPOINT [ "you-get" ]
+ENTRYPOINT [ "/init" ]
 CMD [ "--help" ]
