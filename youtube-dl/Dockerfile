@@ -12,3 +12,5 @@ COPY init /init
 WORKDIR /workdir
 
 ENTRYPOINT ["/init"]
+
+CMD ["--help"]
