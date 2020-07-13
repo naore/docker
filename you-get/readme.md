@@ -1,5 +1,7 @@
 ## forked from [soimort/you-get](https://github.com/soimort/you-get)
 
+This fork can be updated to latest you-get version when you use it.
+
 # you-get
 you-get in alpine.
 
