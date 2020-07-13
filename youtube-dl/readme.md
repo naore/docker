@@ -11,8 +11,7 @@ It is suggested to configure an alias as follows (and place into your `.bash_ali
 ```shell
 alias youtube-dl='docker run \
                   --rm -i \
-                  -e PGID=$(id -g) \
-                  -e PUID=$(id -u) \
+                  -u $(id -g):$(id -u) \
                   -v "$(pwd)":/workdir:rw \
                   naore/youtube-dl'
 ```
@@ -28,8 +27,7 @@ In order for the docker container to use the configuration file, it must be mapp
 ```shell
 docker run \
     --rm -i \
-    -e PGID=$(id -g) \
-    -e PUID=$(id -u) \
+    -u $(id -g):$(id -u) \
     -v /path/to/downloaded/videos:/workdir:rw \
     -v /path/to/youtube-dl.conf:/etc/youtube-dl.conf:ro \
     naore/youtube-dl
