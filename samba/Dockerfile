@@ -9,7 +9,7 @@ RUN apk --no-cache upgrade && apk --no-cache add samba samba-common-tools superv
  && mkdir /config \
 # && mkdir /work /mltmedia /doc /p2p /moments /toBsaved \
 
-# add a non-root user and group called "rio" with no password, no home dir, no shell, and gid/uid set to 1000
+# add a non-root user and group called "nas" with no password, no home dir, no shell, and gid/uid set to 1000
  && addgroup -g 998 docker && adduser -D -H -G docker -s /bin/false -u 1000 nas \
 
 # clean cache
