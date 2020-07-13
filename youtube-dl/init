@@ -1,5 +1,5 @@
 #!/bin/sh
 
-apk add youtube-dl
+pip3 install -U youtube-dl
 
 youtube-dl "$@"
