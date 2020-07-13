@@ -5,19 +5,7 @@ This fork can be updated to latest you-get version when you use it.
 # you-get
 you-get in alpine.
 
-In soimort's dockerfile, there are codes as follow,
-```
-## https://github.com/soimort/you-get
-# you-get(){
-#   docker run -it --rm \
-#     -u $(id -u):$(id -g) \
-#     -v "$PWD":/downloads \
-#     -w /downloads \
-#     ondrejmo/you-get "$@"
-# }
-```
-
-It is suggested to configure an alias as follows (and place into your .bash_aliases file):
+It is suggested to configure an alias as follows (and place into your .bash_aliases or .bashrc file):
 
 ```
 alias you-get='docker run \
