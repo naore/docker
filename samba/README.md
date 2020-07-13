@@ -3,6 +3,8 @@ If using an external disk for sharing, it's better to mount the higher level pat
 
 For example, the physical folder is mounted as /mnt/sda, it's better to use /mnt as shared folder.
 
+User:Group id in this container is 1000:998. Change it by yourself if necessary.
+
 # samba-alpine
 A simple and super lightweight Samba docker container, based on the latest Alpine Linux base image 🐧🐋💻.
 
