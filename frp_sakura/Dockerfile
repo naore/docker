@@ -12,4 +12,4 @@ RUN apk add --no-cache ca-certificates && \
 
 ENTRYPOINT ["/sakura"]
 
-CMD ["-f $TOKEN:$TUNNELID"]
+CMD ["-f","$TOKEN:$TUNNELID"]
