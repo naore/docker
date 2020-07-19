@@ -1,5 +1,13 @@
 ## 仅适用Linux x86_64或arm架构系统
 
+For x86_64, simply run 
+
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e SID=<your_selected_server_id> --restart=unless-stopped naore/sakura_frp `
+
+For arm, simply run
+
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e SID=<your_selected_server_id> --restart=unless-stopped naore/sakura_frp:arm `
+
 ## 容器内部运行参数，大写字母为环境变量
 
 /sakura -t $TOKEN -s $SID
