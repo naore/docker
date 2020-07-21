@@ -10,6 +10,6 @@ RUN apk add --no-cache ca-certificates && \
     chmod +x /sakura && \
     rm -rf /var/cache/apk/* /tmp/*
 
-ENTRYPOINT [ "/sakura" ]
+ENTRYPOINT /sakura
 
-CMD [ "--help" ]
+CMD --help
