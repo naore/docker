@@ -12,6 +12,11 @@ For arm, simply run
 
 `docker run -d --name sakura_frp -v $PWD/frp.ini:/frp.ini --restart=unless-stopped naore/sakura_frp -c /frp.ini `
 
+新版本 frpc 添加了-f选项的多隧道支持，启动多个隧道时, 这些隧道必须处于同一个节点中
+示例:
+
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp  -f abcedfghabcedfgh:6666,6667,6668,6669 `
+
 ## 容器内部运行参数，大写字母为环境变量
 
 /sakura -f $TOKEN:$TUNNELID
