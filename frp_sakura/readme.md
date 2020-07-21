@@ -2,13 +2,15 @@
 
 For x86_64, simply run 
 
-`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp `
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp -f $TOKEN:$TUNNELID `
 
 For arm, simply run
 
-`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp:arm `
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp:arm -f $TOKEN:$TUNNELID `
 
-以上只能连接一条隧道，如需一次连接多条隧道，需要用配置文件，运行命令改为 `-c frp_config.txt`
+以上只能连接一条隧道，如需一次连接多条隧道，需要用配置文件，运行命令改为
+
+`docker run -d --name sakura_frp -v $PWD/frp.ini:/frp.ini --restart=unless-stopped naore/sakura_frp -c /frp.ini '
 
 ## 容器内部运行参数，大写字母为环境变量
 
