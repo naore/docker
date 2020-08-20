@@ -13,6 +13,6 @@ RUN tar -xzf /rrshareweb.tar.gz && \
 
 EXPOSE 3001 6714 30210
 
-VOLUME /opt/work/store
+VOLUME /opt/work/rrshareweb/data
 
 ENTRYPOINT [ "/rrshareweb/rrshareweb" ]
