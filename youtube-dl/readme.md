@@ -1,6 +1,6 @@
-Folked from mikenye/docker-youtube-dl(https://www.github.com/mikenye/docker-youtube-dl).
+Based on jrottenberg/ffmpeg (https://hub.docker.com/r/jrottenberg/ffmpeg).
 
-This folk can be updated to latest youtube-dl version automately when you use it.
+This container can be updated to latest youtube-dl version automately when you use it.
 
 ## Quick Start
 
