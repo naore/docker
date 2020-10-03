@@ -7,7 +7,7 @@ FROM alpine
 
 ENV GLIBC_VERSION=2.31-r0 TZ=Asia/Shanghai
 
-COPY --from=cache /rrshareweb/* /rrshareweb
+COPY --from=cache /rrshareweb /rrshareweb
 
 ADD https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk glibc-${GLIBC_VERSION}.apk
 ADD https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk glibc-bin-${GLIBC_VERSION}.apk
