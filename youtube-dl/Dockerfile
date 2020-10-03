@@ -1,9 +1,8 @@
-FROM python:rc-alpine
+FROM ffmpeg:X.Y-alpine
 
 ADD init /init
 
-RUN apk add --no-cache --virtual ffmpeg ca-certificates mplayer rtmpdump && \
-    pip3 install youtube-dl && \
+RUN apk add --no-cache --virtual ca-certificates mplayer rtmpdump youtube-dl && \
     mkdir -p /workdir && \
     chmod +x /init
 
