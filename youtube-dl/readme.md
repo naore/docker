@@ -1,4 +1,4 @@
-Based on jrottenberg/ffmpeg (https://hub.docker.com/r/jrottenberg/ffmpeg).
+Based on jrottenberg/ffmpeg (https://hub.docker.com/r/jrottenberg/ffmpeg) and refer to document of mikenye/docker-youtube-dl(https://www.github.com/mikenye/docker-youtube-dl).
 
 This container can be updated to latest youtube-dl version automately when you use it.
 
