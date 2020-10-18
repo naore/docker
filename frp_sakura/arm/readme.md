@@ -19,7 +19,7 @@ For arm, simply run
 
 ## 容器内部运行参数，大写字母为环境变量
 
-frpc_linux_amd64 -f $TOKEN:$TUNNELID
+/frpc_linux_amd64 -f $TOKEN:$TUNNELID
 
 
 ## 以下为可选参数
