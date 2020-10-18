@@ -1,15 +1,13 @@
 FROM multiarch/alpine:arm64-latest-stable
 
-ENV VERSION="frpc_linux_arm64" \
+ENV VERSION="v0.34.1-sakura-1" \
     TOKEN="abc" \
     TUNNELID="tunnelid"
+    
+ADD https://getfrp.sh/d/frpc_linux_arm64
 
-RUN apk add --no-cache ca-certificates && \
-    wget --no-check-certificate  https://qianqu.me/frp/${VERSION} && \ 
-    mv ${VERSION} /sakura && \
-    chmod +x /sakura && \
-    rm -rf /var/cache/apk/* /tmp/*
+RUN chmod +x frpc_linux_arm64 
 
-ENTRYPOINT [ "/sakura" ]
+ENTRYPOINT [ "/frpc_linux_arm64" ]
 
 CMD [ "--help" ]
