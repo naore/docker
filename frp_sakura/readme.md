@@ -17,6 +17,8 @@ For arm, simply run
 
 `docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp  -f abcedfghabcedfgh:6666,6667,6668,6669 `
 
+新版本加入自动更新功能
+
 ## 容器内部运行参数，大写字母为环境变量
 
 /frpc_linux_amd64 -f $TOKEN:$TUNNELID
