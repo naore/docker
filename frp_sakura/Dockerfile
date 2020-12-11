@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV VERSION="v0.34.1-sakura-2.1" \
+ENV VERSION="v0.34.2-sakura-2" \
     TOKEN="abc" \
     TUNNELID="tunnelid"
     
