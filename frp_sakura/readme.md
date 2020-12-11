@@ -19,7 +19,7 @@ For arm, simply run
 
 新版本加入自动更新功能
 
-`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp:arm -f $TOKEN:$TUNNELID --update`
+`docker run -d --name sakura_frp -e TOKEN=<your_token> -e TUNNELID=<your_selected_TUNNELID> --restart=unless-stopped naore/sakura_frp-f $TOKEN:$TUNNELID --update`
 
 ## 容器内部运行参数，大写字母为环境变量
 
