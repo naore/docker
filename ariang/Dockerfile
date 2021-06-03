@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV ARIANG_VER 1.1.7
+ENV ARIANG_VER 1.2.1
 #ENV RPC_SECRET=""
 
 RUN apk update \
