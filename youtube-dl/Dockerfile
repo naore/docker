@@ -1,4 +1,4 @@
-FROM jrottenberg/ffmpeg:4.3.1-alpine311
+FROM jrottenberg/ffmpeg:4-alpine
 
 ADD init /init
 
