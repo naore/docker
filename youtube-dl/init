@@ -1,5 +1,0 @@
-#!/bin/sh
-
-apk add --upgrade youtube-dl
-
-youtube-dl "$@"
